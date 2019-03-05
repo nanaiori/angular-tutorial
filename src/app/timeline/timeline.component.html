@@ -1,0 +1,23 @@
+<div>
+<h1>Connexion</h1>
+<h2><span *ngIf="user=='';else elseModul"> Veuillez vous se conneter</span> <ng-template #elseModul>Bonjour ,{{user|uppercase}}</ng-template></h2>
+<label>Modifier:</label><input type="text" [(ngModel)]="user">
+<br>
+<div *ngFor="let tweet of tweets">
+  <div><strong>{{tweet.user}}</strong>
+  
+  <span class="grey">{{tweet.created_at |timeAgo}}</span></div>
+  <div>{{tweet.text}}</div>
+  <div class="favorite">
+		<i [ngClass]="{'far': !tweet.likeB, 'fas': tweet.likeB}" class="fa-heart" (click)="addLike(tweet.id)"><span *ngIf = "tweet.like">{{tweet.like}} </span></i>
+	</div>
+<br>
+
+<br>
+</div>
+
+<div><textarea #text>
+  
+</textarea></div>
+<button class="button" (click)="OnSave(text.value)"[ngClass]="{'dis': user ==''}" [disabled]="user==''" class ="tweet-add">SAVE</button>
+
